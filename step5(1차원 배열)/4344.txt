@@ -1,0 +1,39 @@
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        
+        int N = Integer.parseInt(br.readLine());
+        
+        for(int i=0; i<N; i++){
+            int sum=0;
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int stdNum = Integer.parseInt(st.nextToken());
+            int[] score = new int[stdNum];
+            
+            for(int a=0; a<stdNum; a++) {
+                score[a] = Integer.parseInt(st.nextToken());
+                sum+=score[a];
+            }
+            
+            int overCount=0;
+            double scoreAvg = (double)sum/stdNum;
+            
+            for(int b=0; b<stdNum; b++) {
+                if(score[b] > scoreAvg) overCount++;
+            }
+            bw.write(String.format("%.3f%%\n", ((double)overCount/stdNum)*100));
+        }
+        
+        br.close();
+        bw.flush();
+        bw.close();
+    }
+}
