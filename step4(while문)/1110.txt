@@ -1,0 +1,27 @@
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringTokenizer st;
+        
+        int a = Integer.parseInt(br.readLine());
+        br.close();
+        int copy = a;
+        int cnt=0;
+        
+         do{
+            a = ((a % 10) * 10) + (((a / 10) + (a % 10)) % 10);
+            cnt++;
+        } while(copy!=a);
+        bw.write(cnt+"");
+        bw.flush();
+        bw.close();
+    }
+}
