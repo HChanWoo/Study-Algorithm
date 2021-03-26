@@ -1,0 +1,9 @@
+N = int(input())
+NSum=0
+
+for i in range(N):
+    NSum+=i+1
+    
+print(NSum)
+
+#한줄로는 : print(sum(range(1,int(input())+1)))

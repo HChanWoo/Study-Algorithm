@@ -1,0 +1,6 @@
+N,num = map(int,input().split())
+listN = map(int,input().split())
+
+for i in listN :
+    if i<num :
+        print(i,end=' ')

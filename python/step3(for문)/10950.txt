@@ -1,0 +1,7 @@
+N = int(input())
+S=''
+
+for i in range(N) :
+    A,B = map(int, input().split())
+    S+=str(A+B)+'\n'
+print(S)
