@@ -1,0 +1,8 @@
+N = N2 = int(input())
+cycle = 0
+while True :
+    cycle+=1
+    N2 = int(str(N2%10) + str((N2//10+N2%10)%10))
+    if N2 == N :
+        print(cycle)
+        break
