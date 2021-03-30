@@ -1,0 +1,3 @@
+input()
+listN = list(map(int,input().split()))
+print(min(listN),max(listN))

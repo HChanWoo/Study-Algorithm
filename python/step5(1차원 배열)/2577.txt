@@ -1,0 +1,9 @@
+A = int(input())
+B = int(input())
+C = int(input())
+sumN = str(A*B*C)
+listN = [0,0,0,0,0,0,0,0,0,0]
+for i in sumN :
+    listN[int(i)]+=1
+for i in listN :
+    print(i)

@@ -1,0 +1,5 @@
+listN = list()
+for i in range(9) :
+    listN.append(int(input()))
+
+print('%d\n%d'%(max(listN),listN.index(max(listN))+1))
