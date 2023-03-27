@@ -1,0 +1,57 @@
+# 워크플로우 이름. 나중에 해당 값을 사용할 수 있기 때문에 `유니크`하게 사용하는 것이 좋아요!
+# yml 파일은 들여쓰기를 구분하기 때문에 작성하실 때 주의해주세요!
+name: automatically-update-readme
+
+# workflow를 동작하게하는 trigger입니다.
+# repository에 push 이벤트가 발생할 때마다 실행될 거예요.
+# push 말고도 여러 가지 이벤트들이 있겠죠?
+on: push
+
+# job은 사용자가 정한 플랫폼을 통해 step이라는 일련의 과정을 실행할 수 있어요.
+# 여러 개의 job을 사용할 수 있으며, 여러 개의 job을 사용할 때는 서로 정보도 교환할 수 있어요.
+# 그리고 각각 독립적으로도 실행할 수도 있어요.
+# 해당 예제는 간단한 workflow이므로 하나의 job만 갖도록 할게요.
+jobs:
+  # bulid 라는 하나의 job을 생성합니다!
+  build:
+    # 리눅스 환경에서 실행할거에요! 물론 다른 환경도 있습니다. (Mac, window 등...)
+    runs-on: ubuntu-latest
+
+    # 권한을 부여해줄 거에요! 우리는 `contents`에 쓰기 권한을 줄겁니다.
+    # permissions에 대해 정말 많은 범위가 있어요. 공식 문서에서 한 번 확인해보세요.
+    permissions:
+      contents: write
+
+    # job 안에는 steps이라는 키워드가 옵니다. step은 shell script를 실행할 수도 있고,
+    # 누군가 만들어 놓은 Action을 사용할 수도 있어요.
+    steps:
+      # GitHub Actions는 해당 프로젝트를 리눅스 환경에 checkout하고 나서 실행을 합니다.
+      # 마치 우리가 브랜치를 만들 때 checkout하는 것처럼요. 꼭 필요합니다.
+      # 참고로 아래 코드는 누군가 만들어놓은 Action을 사용하는 겁니다.
+      # 만들어놓은 Action을 사용할 때는 `uses`라는 키워드를 사용해야 돼요.
+      - uses: actions/checkout@v3
+
+      # 해당 환경을 Node.js 위에서 실행하겠다고 명시해줍니다.
+      # 마찬가지로 누군가 만들어 놓은 Action이겠죠?
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        # with라는 키워드로 Action에 값을 전달할 수 있어요.
+        with:
+          node-version: '16.14.0'
+          # push할 때마다 npm을 install 해야될까요? (시간이 여간 많이 걸리는 게 아닐 텐데 ..)
+          # 아닙니다. 해당 프로젝트의 node_modules가 변했는지 안 변했는지를 cache를 이용해서
+          # 모듈 변화가 있을 때만 npm install을 해줄 수도 있어요.
+          cache: 'npm'
+          
+      # package.json scripts에 명시해놓은 'build' 명령어를 실행해줄거에요!
+      - name: build README.md
+        run: npm run build
+     # build 명령어를 통해 README.md 파일의 내용을 변경했으니 repository에
+     # 변경된 내용을 반영해야겠죠? push를 해줍니다!
+      - name: update README.md
+        run: |
+          git add ./README.md
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git commit -m "Automatic Update README.md"
+          git push
