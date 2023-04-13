@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type" : "module",
+  "type": "module",
   "scripts": {
-    "build":"node utils/build.js",
+    "build": "node utils/build.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/HChanWoo/Study-Algorithm/issues"
   },
-  "homepage": "https://github.com/HChanWoo/Study-Algorithm#readme"
+  "homepage": "https://github.com/HChanWoo/Study-Algorithm#readme",
+  "dependencies": {
+    "numpy": "0.0.1"
+  }
 }
