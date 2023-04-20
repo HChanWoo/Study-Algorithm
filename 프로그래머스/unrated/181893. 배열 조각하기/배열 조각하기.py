@@ -1,12 +1,10 @@
 def solution(arr, query):
-    start = 0
-    end = len(query) - 1
-    for i in range(len(query)):
-        if i % 2 == 0:
-            end = start + query[i]
-        else:
-            start += query[i]
-    answer = arr[start:end]
-    if not answer:
-        return [-1]
-    return answer
+    answer = []
+    
+    for idx in range(len(query)) :
+        if idx%2 == 0 :
+            arr = arr[:query[idx]]
+        else :
+            arr = arr[query[idx]:]
+            
+    return [-1] if len(arr)==0 else arr
