@@ -12,7 +12,7 @@ def solution(numbers):
 
     for ele in list_combination :
         check = 0
-        for i in range(2,ele) :
+        for i in range(2,int(ele**0.5+1)) :
             if ele%i == 0 :
                 check=1
                 break
