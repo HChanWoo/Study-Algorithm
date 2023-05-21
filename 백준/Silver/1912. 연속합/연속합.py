@@ -1,8 +1,7 @@
-len_input = int(input())
-list_input = list(map(int,input().split()))
-max_sum = [0]*len_input
-max_sum[0] = list_input[0]
+N = int(input())
+N_list = list(map(int,input().split()))
 
-for i in range(1,len_input) :
-    max_sum[i] = max(list_input[i],max_sum[i-1]+list_input[i])
-print(max(max_sum))
+for idx in range(1,N) :
+    N_list[idx] = max(N_list[idx], N_list[idx]+N_list[idx-1])
+
+print(max(N_list))
