@@ -11,12 +11,8 @@ def isComplete(x) :
                 stack.pop()
 
     return stack == []
-    
-def solution(p):
-    if p == '' : return p
 
-    answer = ''
-
+def sep(p) :
     start=0
     end=0
     idx=0
@@ -31,6 +27,15 @@ def solution(p):
     
     u = p[:idx+1]
     v = p[idx+1:]
+    return u,v
+
+
+def solution(p):
+    if p == '' : return p
+
+    answer = ''
+
+    u,v = sep(p)
 
     if isComplete(u) :
         answer = u + solution(v)
