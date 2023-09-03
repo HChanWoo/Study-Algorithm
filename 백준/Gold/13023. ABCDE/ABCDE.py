@@ -1,3 +1,6 @@
+import sys
+input = sys.stdin.readline
+
 N,M = map(int,input().split())
 visited = [0]*N
 M_list = [[] for _ in range(N)]
