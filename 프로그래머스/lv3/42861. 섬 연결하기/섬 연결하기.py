@@ -8,8 +8,7 @@ def solution(n, costs):
             if a1 in connected and b1 in connected :
                 continue
             if a1 in connected or b1 in connected :
-                connected.add(a1)
-                connected.add(b1)
+                connected.update([a1,b1])
                 answer+=cost
                 break
         
