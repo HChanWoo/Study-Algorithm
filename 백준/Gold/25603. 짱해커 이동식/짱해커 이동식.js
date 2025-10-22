@@ -15,6 +15,6 @@ while(left + K <= N) {
     max = Math.max(max, min);
 
     left = pos + 1;
-    right = Math.min(left + K - 1, N - 1);
+    right = left + K - 1
 }
 console.log(max);
