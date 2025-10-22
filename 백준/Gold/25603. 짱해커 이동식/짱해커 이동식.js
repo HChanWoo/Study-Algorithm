@@ -7,14 +7,18 @@ const costs = input[1].split(" ").map(Number);
 let left = 0, right = K-1;
 let max = -Infinity;
 
-while(left + K <= N) {
-    const window = costs.slice(left, right + 1);
-    const min = Math.min(...window);
-    const pos = left + window.lastIndexOf(min);
+if (K === 1) {
+  console.log(Math.max(...costs));
+} else {
+    while(left + K <= N) {
+        const window = costs.slice(left, right + 1);
+        const min = Math.min(...window);
+        const pos = left + window.lastIndexOf(min);
 
-    max = Math.max(max, min);
+        max = Math.max(max, min);
 
-    left = pos + 1;
-    right = left + K - 1
+        left = pos + 1;
+        right = left + K - 1
+    }
+    console.log(max);
 }
-console.log(max);
