@@ -15,7 +15,7 @@ lines = input.split("\n").map(&:strip)
 N, H = lines[0].split.map(&:to_i)
 arr = lines[1].split.map(&:to_i)
 
-left = 0
+left = 1
 right = arr.max
 while left <= right
     mid = (left + right) / 2
